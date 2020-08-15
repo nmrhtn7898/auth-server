@@ -1,0 +1,10 @@
+encrypt:
+  key: nuguribom
+spring:
+  application:
+    name: authservice
+  profiles:
+    active: default
+  cloud:
+    config:
+      uri: http://configserver:8888

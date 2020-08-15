@@ -1,0 +1,27 @@
+version: '3'
+networks:
+  eureka-server_myweb:
+    external: true
+services:
+  auth-database:
+    container_name: "auth-database"
+    image: mysql
+    ports:
+      - "3307:3306"
+    networks:
+      - eureka-server_myweb
+    environment:
+      MYSQL_ROOT_PASSWORD: "1234"
+      MYSQL_USER: "nuguri"
+      MYSQL_PASSWORD: "bom"
+      MYSQL_DATABASE: "testdb"
+  authserver:
+    container_name: "authserver"
+    image: auth-server:1.0
+    ports:
+      - "8901:8901"
+    networks:
+      - eureka-server_myweb
+    environment:
+      DATABASESERVER_PORT: "3307"
+
